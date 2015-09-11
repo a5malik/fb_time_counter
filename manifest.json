@@ -2,12 +2,20 @@
 "manifest_version": 2, 
 "name": "My Cool Extension",
 "version": "0.1", 
+"browser_action":
+	{
+		"default_icon": "icon.png"
+	},
+	"background":
+	{
+		"scripts": ["background.js"]
+	},
 "content_scripts":[
 {
 	"matches": [
-	"https://www.facebook.com/dichen.yin"
+	"<all_urls>"
 	], 
-	"js":["content.js"]
+	"js":["jquery-2.1.3.min.js", "content.js"]
 }
 ]
 }
