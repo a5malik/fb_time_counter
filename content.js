@@ -1,1 +1,1 @@
-alert("Hello from Chrome Extension!");
+alert("This guy is a faggot");
