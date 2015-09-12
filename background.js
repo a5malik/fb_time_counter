@@ -8,7 +8,7 @@ chrome.tabs.onUpdated.addListener(
 				if(Tab.url.indexOf("facebook") > -1)
 				{
 					fb = true;
-					alert("updated to fb");
+					//alert("updated to fb");
 					var date = new Date();
 					timeStarted = date.getTime();
 				}
@@ -23,7 +23,7 @@ chrome.tabs.onActivated.addListener(
 				{
 					if(fb == false)
 						{
-							alert("changed to fb");
+							//alert("changed to fb");
 							fb = true;
 							var date = new Date();
 							timeStarted = date.getTime();
@@ -49,3 +49,40 @@ chrome.tabs.onActivated.addListener(
 			});
 		}
 );
+
+chrome.runtime.onMessage.addListener(
+function(request, sender, sendResponse){
+	if(request.popupOpen)
+	{
+			var time;
+			if(fb)
+				{
+					chrome.storage.sync.get("time", function(obj){
+								time = obj.time; 
+								if(!time) time = 0;
+								var date1 = new Date();
+								time += date1.getTime() - timeStarted;
+								timeStarted = date1.getTime();
+								chrome.storage.sync.set({"time" : time}, function(){console.log(time/1000);});
+							});
+				}
+		
+	}
+});
+/*
+chrome.browserAction.onClicked.addListener(function(tab){
+	if(fb)
+	{
+		var time;
+		chrome.storage.sync.get("time", function(obj){
+							time = obj.time; 
+							if(!time) time = 0;
+							var date1 = new Date();
+							time += date1.getTime() - timeStarted;
+							timeStarted = date1.getTime();
+							chrome.storage.sync.set({"time" : time}, function(){console.log(time/1000);});
+							});
+	}
+	
+});
+*/
