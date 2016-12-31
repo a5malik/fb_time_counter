@@ -1,4 +1,4 @@
-# chrome_extension
+# facebook time counter chrome_extension
 
 Counts the time you spend on facebook, with facebook as the active tab. 
 
